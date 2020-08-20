@@ -1,21 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, ScrollView, SafeAreaView, StatusBar, ImageBackground, TextInput, Text } from 'react-native';
+import Reactotron from "reactotron-react-native"
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+import Header from './components/header/Header';
+import { Body } from './components/body/Body';
+import Footer from './components/footer/Footer';
+
+if (__DEV__) {
+  import("./ReactotronConfig")
+}
+
+Reactotron.log("HELLO WORLD!!!")
+
+export default class App extends Component {
+
+  render() {
+    return (
+      <SafeAreaView style={styles.screen}>
+        <StatusBar hidden />
+        <View>
+          <Header />
+        </View>
+        <ImageBackground style={styles.body} source={require('./assets/bg.png')}>
+          <Body />
+        </ImageBackground>
+        <View>
+          <Footer />
+        </View>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+  body: {
+    flex: 1
+  }
 });

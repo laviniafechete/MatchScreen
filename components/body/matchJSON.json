@@ -1,0 +1,102 @@
+[
+    {
+        "name": {
+            "name1": "Maria Popescu",
+            "name2": "George Popescu"
+        },
+        "score": {
+            "score1": 1223,
+            "score2": 67
+        }
+    },
+    {
+        "name": {
+            "name1": "Alex Gflfl",
+            "name2": "Vlad Alexresduc"
+        },
+        "score": {
+            "score1": 142,
+            "score2": 1567
+        }
+    },
+    {
+        "name": {
+            "name1": "Marius Ion",
+            "name2": "Vlad Aldffru"
+        },
+        "score": {
+            "score1": 14223,
+            "score2": 2232
+        }
+    },
+    {
+        "name": {
+            "name1": "Mihai Ion",
+            "name2": "Vlad Alescu"
+        },
+        "score": {
+            "score1": 45,
+            "score2": 1567
+        }
+    },
+    {
+        "name": {
+            "name1": "Alex Gksks",
+            "name2": "Geo Alexandru"
+        },
+        "score": {
+            "score1": 345,
+            "score2": 117
+        }
+    },
+    {
+        "name": {
+            "name1": "Afkmdfnk Ion",
+            "name2": "Vlad Gessksk"
+        },
+        "score": {
+            "score1": 13,
+            "score2": 147
+        }
+    },
+    {
+        "name": {
+            "name1": "Alibaba Ion",
+            "name2": "Vlad Celsius"
+        },
+        "score": {
+            "score1": 1444,
+            "score2": 147
+        }
+    },
+    {
+        "name": {
+            "name1": "Andrei Ion",
+            "name2": "David Gessksk"
+        },
+        "score": {
+            "score1": 11,
+            "score2": 147
+        }
+    },
+    {
+        "name": {
+            "name1": "Marius Ion",
+            "name2": "Vlad Aldffru"
+        },
+        "score": {
+            "score1": 14223,
+            "score2": 2232
+        }
+    },
+    {
+        "name": {
+            "name1": "Mihai Ion",
+            "name2": "Vlad Alescu"
+        },
+        "score": {
+            "score1": 45,
+            "score2": 1567
+        }
+    }
+]
