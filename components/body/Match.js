@@ -11,7 +11,9 @@ class Match extends React.PureComponent {
 
 
     componentDidUpdate(prevProps) {
+        Reactotron.log('aici')
         logUnequalProps(prevProps, this.props)
+        Reactotron.log(logUnequalProps)
     }
 
     bgChange = () => {
@@ -36,7 +38,7 @@ class Match extends React.PureComponent {
             >
                 <View style={[this.bgChange() ? styles.bgChange : styles.matchContainer, this.bgMatch()]}>
                     <MatchPlayers name={this.props.name.name1} />
-                    <MatchScore isActive={this.props.isActive} index={this.props.index} score={this.props.score} />
+                    <MatchScore isActive={this.props.isActive} score={this.props.score} />
                     <MatchPlayers name={this.props.name.name2} />
                 </View>
             </TouchableWithoutFeedback>

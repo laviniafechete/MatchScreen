@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet, ActivityIndicator, FlatList, ScrollView, } from 'react-native';
 
 import Reactotron from "reactotron-react-native"
@@ -9,33 +9,8 @@ import Match from './Match';
 
 import matchJSON from './matchJSON'
 
+export class Body extends React.PureComponent {
 
-const MatchItem = () => matchJSON.map((item, index) => {
-    state = {
-        activeIndexMatch: 0
-    }
-
-    const isActive = index === this.state.activeIndexMatch
-
-    // onChange = (activeIndexMatch) => {
-    //     this.setState({
-    //         activeIndexMatch,
-    //     })
-    // }
-
-    return (
-        <Match
-            // onChange={(activeIndexMatch) => this.setState({ activeIndexMatch })}
-            key={index}
-            name={item.name}
-            score={item.score}
-            index={index}
-            isActive={isActive}
-        />
-    );
-})
-
-export class Body extends Component {
     state = {
         isLoading: true,
         message: '',
@@ -59,13 +34,31 @@ export class Body extends Component {
         })
     };
 
-    onChange = (activeIndexMatch) => {
-        this.setState({
-            activeIndexMatch,
-        })
-    }
-
     render() {
+
+        const MatchItem = () => matchJSON.map((item, index) => {
+
+            const isActive = index === this.state.activeIndexMatch
+
+            onChange = (activeIndexMatch) => {
+                this.setState({
+                    activeIndexMatch,
+                })
+            };
+
+            return (
+                <Match
+                    onChange={(activeIndexMatch) => this.setState({ activeIndexMatch })}
+                    //onChange={this.onChange}
+                    key={index}
+                    name={item.name}
+                    score={item.score}
+                    index={index}
+                    isActive={isActive}
+                />
+            );
+        });
+
 
         if (this.state.isLoading) {
             return (
@@ -80,9 +73,7 @@ export class Body extends Component {
                 <Players />
                 <ScrollView>
                     <MatchItem
-                        onChange={this.onChange}
-                    //onChange={(activeIndexMatch) => this.setState({ activeIndexMatch })}
-                    //isActive={isActive}
+                    //onChange={this.onChange}
                     />
                 </ScrollView>
             </View>

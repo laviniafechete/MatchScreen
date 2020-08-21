@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 
 
 import { FontAwesome } from '@expo/vector-icons';
 
-class MatchScore extends Component {
+class MatchScore extends React.PureComponent {
 
     // state = {
     //     colorRed: this.scoreBarCalculatorRed(),
