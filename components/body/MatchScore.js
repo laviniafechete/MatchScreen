@@ -1,10 +1,10 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 
 
 import { FontAwesome } from '@expo/vector-icons';
 
-class MatchScore extends PureComponent {
+class MatchScore extends Component {
 
     // state = {
     //     colorRed: this.scoreBarCalculatorRed(),
@@ -74,11 +74,11 @@ class MatchScore extends PureComponent {
             <View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.touchableArea}>
-                        {this.props.showButton && (this.props.index === this.props.indexFlatList) ? (
+                        {this.props.isActive &&
                             <ImageBackground style={styles.button} source={require('../../assets/button.png')}>
                                 <Text style={styles.buttonText}>VS</Text>
                             </ImageBackground>
-                        ) : null}
+                        }
                     </TouchableOpacity>
                 </View>
                 <View style={styles.matchScoreContainer} >

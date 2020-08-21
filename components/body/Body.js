@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ActivityIndicator, Alert, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, FlatList, ScrollView, } from 'react-native';
+
+import Reactotron from "reactotron-react-native"
 
 import TopMatch from './TopMatch';
 import Players from './Players';
@@ -7,24 +9,36 @@ import Match from './Match';
 
 import matchJSON from './matchJSON'
 
-const MatchItem = () => matchJSON.map((data, index) => {
-    return (
-        <Match
-            key={index}
-            name={data.name}
-            score={data.score}
-        />
-    );
-})
+// const MatchItem = () => matchJSON.map((item, index) => {
+
+//     state = {
+//         activeIndexMatch: 0
+//     }
+
+//     const isActive = () => {
+//         index === this.state.activeIndexMatch
+//     }
+
+//     return (
+//         <Match
+//             name={item.name}
+//             score={item.score}
+//             index={index}
+//             //isActive={isActive}
+//             onChange=
+//         />
+//     );
+// })
 
 export class Body extends Component {
     state = {
         isLoading: true,
         message: '',
-        indexFlatList: 0,
-        showButton: false,
-        newBg: false,
-    }
+        activeIndexMatch: 0,
+        //newBg: false,
+    };
+
+
 
     // callbackFunction = (childData) => {
     //     console.log('aici');
@@ -48,26 +62,34 @@ export class Body extends Component {
         })
     };
 
-    toggleButton = () => {
-        console.log('toggleButton')
+    onChange = (activeIndexMatch) => {
         this.setState({
-            showButton: true,
-            newBg: true,
+            activeIndexMatch,
         })
-    };
+    }
 
-    onChange = (index) => {
-        this.setState({
-            indexFlatList: index
-        })
-        this.toggleButton();
-        // console.log('this.state.indexFlatList', this.state.indexFlatList)
-        // console.log(this.state.newBg, 'this.state.newBg')
-        // console.log(this.state.showButton, 'this.state.showButton')
+    renderItem = ({ item, index }) => {
+        //Reactotron.log(this.state.activeIndexMatch)
+        const isActive = index === this.state.activeIndexMatch
+        //Reactotron.log(isActive, index);
+        return (
+            <Match
+                onChange={this.onChange}
+                name={item.name}
+                score={item.score}
+                index={index}
+                isActive={isActive}
+            />
+        )
+    }
+
+    keyExtractor = (item, index) => {
+        //Reactotron.log(index);
+        return this.state.activeIndexMatch + index.toString()
     }
 
     render() {
-        console.log('render body')
+
         if (this.state.isLoading) {
             return (
                 <View style={styles.loader}>
@@ -82,21 +104,13 @@ export class Body extends Component {
                 <FlatList
                     keyExtractor={(item, index) => index.toString()}
                     data={matchJSON}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <Match
-                                onChange={this.onChange}
-                                key={index}
-                                name={item.name}
-                                score={item.score}
-                                index={index}
-                                indexFlatList={this.state.indexFlatList}
-                                showButton={this.state.showButton}
-                                newBg={this.state.newBg}
-                            />
-                        )
-                    }}
+                    renderItem={this.renderItem}
                 />
+                {/* <ScrollView>
+                    <MatchItem
+                    //onChange={this.onChange()}
+                    />
+                </ScrollView> */}
             </View>
         );
     }

@@ -1,30 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 import Reactotron from "reactotron-react-native"
 
 import MatchPlayers from './MatchPlayers';
 import MatchScore from './MatchScore';
+import { logUnequalProps } from '../helpers';
 
-class Match extends Component {
+class Match extends React.PureComponent {
 
-    state = {
-        //showButton: false,
+
+    componentDidUpdate(prevProps) {
+        logUnequalProps(prevProps, this.props)
     }
 
     bgChange = () => {
         if (this.props.index % 2 === 0) return true
     };
 
-    toggleButton = () => {
-        this.setState({
-            showButton: !this.state.showButton,
-            newBg: !this.state.newBg,
-        })
-    };
-
     bgMatch = () => {
-        if (this.props.newBg && (this.props.indexFlatList === this.props.index)) {
+        if (this.props.isActive) {
             return {
                 flexDirection: 'row',
                 justifyContent: 'center',
@@ -32,13 +27,14 @@ class Match extends Component {
             }
         }
     }
+
     render() {
         Reactotron.log('match.js')
         return (
             <TouchableWithoutFeedback onPress={() => this.props.onChange(this.props.index)}>
                 <View style={[this.bgChange() ? styles.bgChange : styles.matchContainer, this.bgMatch()]}>
                     <MatchPlayers name={this.props.name.name1} />
-                    <MatchScore indexFlatList={this.props.indexFlatList} index={this.props.index} showButton={this.props.showButton} score={this.props.score} />
+                    <MatchScore isActive={this.props.isActive} index={this.props.index} score={this.props.score} />
                     <MatchPlayers name={this.props.name.name2} />
                 </View>
             </TouchableWithoutFeedback>

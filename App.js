@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, SafeAreaView, StatusBar, ImageBackground, TextInput, Text } from 'react-native';
-import Reactotron from "reactotron-react-native"
+import { StyleSheet, View, SafeAreaView, StatusBar, ImageBackground } from 'react-native';
+
 
 
 import Header from './components/header/Header';
@@ -10,8 +10,6 @@ import Footer from './components/footer/Footer';
 if (__DEV__) {
   import("./ReactotronConfig")
 }
-
-Reactotron.log("HELLO WORLD!!!")
 
 export default class App extends Component {
 
