@@ -31,7 +31,9 @@ class Match extends React.PureComponent {
     render() {
         Reactotron.log('match.js')
         return (
-            <TouchableWithoutFeedback onPress={() => this.props.onChange(this.props.index)}>
+            <TouchableWithoutFeedback
+                onPress={() => this.props.onChange(this.props.index)}
+            >
                 <View style={[this.bgChange() ? styles.bgChange : styles.matchContainer, this.bgMatch()]}>
                     <MatchPlayers name={this.props.name.name1} />
                     <MatchScore isActive={this.props.isActive} index={this.props.index} score={this.props.score} />
