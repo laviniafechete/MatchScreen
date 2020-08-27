@@ -18,7 +18,7 @@ export class Body extends React.Component {
     componentDidMount() {
         this.loaderTime = setTimeout(
             () => this.loader(),
-            3000
+            600
         );
     };
 

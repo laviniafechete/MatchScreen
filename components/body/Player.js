@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image, Animated } from 'react-native';
 
 export class Player extends Component {
 
@@ -8,8 +8,41 @@ export class Player extends Component {
     };
 
     render() {
+        const { height: wHeight } = Dimensions.get("window");
+        const CARD_HEIGHT = 43
+        const height = wHeight - 43
+        const position = Animated.subtract(this.props.index * CARD_HEIGHT, this.props.y);
+        const isDisappearing = -CARD_HEIGHT;
+        const isTop = 0;
+        const isBottom = height - CARD_HEIGHT;
+        const isAppearing = height;
+        const translateY = Animated.add(
+            Animated.add(
+                this.props.y,
+                this.props.y.interpolate({
+                    inputRange: [0, 0.00001 + this.props.index * CARD_HEIGHT],
+                    outputRange: [0, - this.props.index * CARD_HEIGHT],
+                    extrapolateRight: "clamp",
+                })
+            ),
+            position.interpolate({
+                inputRange: [isBottom, isAppearing],
+                outputRange: [0, -CARD_HEIGHT / 4],
+                extrapolate: "clamp",
+            })
+        );
+        const scale = position.interpolate({
+            inputRange: [isDisappearing, isTop, isBottom, isAppearing],
+            outputRange: [0.5, 1, 1, 0.5],
+            extrapolate: "clamp",
+        });
+        const opacity = position.interpolate({
+            inputRange: [isDisappearing, isTop, isBottom, isAppearing],
+            outputRange: [0.5, 1, 1, 0.5],
+        });
+
         return (
-            <View style={[this.bgChange() ? styles.playerContainer : styles.bg]}>
+            <Animated.View style={[this.bgChange() ? styles.playerContainer : styles.bg, { opacity, transform: [{ translateY }, { scale }] }]}>
                 <View style={styles.posContainer}>
                     <Text style={styles.posText}>{this.props.index + 1 + "."}</Text>
                     <Image source={this.props.data.country === 'aus' ? require('../../assets/flag1.png') : require('../../assets/flag2.png')} style={styles.flag} />
@@ -29,7 +62,7 @@ export class Player extends Component {
                     <Image source={require('../../assets/ball.png')} style={styles.ball} />
                     <Text style={styles.goals}>{this.props.data.goals}</Text>
                 </View>
-            </View>
+            </Animated.View>
         );
     }
 }
@@ -40,7 +73,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#293141',
         paddingVertical: 10,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        //marginVertical: 10,
     },
     bg: {
         flexDirection: 'row',
