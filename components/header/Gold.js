@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Dimensions, StyleSheet, Text } from 'react-native';
 
 import { FontAwesome5 } from '@expo/vector-icons';
 
 
-class Gold extends Component {
-    render() {
-        return (
-            <View style={styles.goldContainer}>
-                <FontAwesome5 name="coins" size={24} color="yellow" />
-                <Text style={styles.goldCounter}>16</Text>
-            </View>
-        );
-    };
+export const Gold = () => {
+    return (
+        <View style={styles.goldContainer}>
+            <FontAwesome5 name="coins" size={24} color="yellow" />
+            <Text style={styles.goldCounter}>16</Text>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -35,5 +33,3 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     }
 });
-
-export default Gold;

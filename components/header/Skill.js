@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 import { FontAwesome } from '@expo/vector-icons';
 
 
-class Skill extends Component {
-    render() {
-        return (
-            <View style={styles.skillContainer}>
-                <View style={styles.valuesContainer}>
-                    <View style={styles.valueContainer}>
-                        <FontAwesome name="star" size={16} color="yellow" />
-                        <Text style={styles.levelBold}>39</Text>
-                    </View>
-                    <View style={styles.valueContainer}>
-                        <Text style={styles.level}>112K/152K</Text>
-                        <FontAwesome name="asterisk" size={16} color="orange" />
-                    </View>
+export const Skill = () => {
+    return (
+        <View style={styles.skillContainer}>
+            <View style={styles.valuesContainer}>
+                <View style={styles.valueContainer}>
+                    <FontAwesome name="star" size={16} color="yellow" />
+                    <Text style={styles.levelBold}>39</Text>
                 </View>
-                <View style={styles.levelContainer}>
-                    <View style={styles.completedLevel}></View>
-                    <View style={styles.remainLevel}></View>
+                <View style={styles.valueContainer}>
+                    <Text style={styles.level}>112K/152K</Text>
+                    <FontAwesome name="asterisk" size={16} color="orange" />
                 </View>
             </View>
-        );
-    };
+            <View style={styles.levelContainer}>
+                <View style={styles.completedLevel}></View>
+                <View style={styles.remainLevel}></View>
+            </View>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -65,5 +63,3 @@ const styles = StyleSheet.create({
         flex: 1,
     }
 });
-
-export default Skill;

@@ -1,31 +1,21 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 
-import Profile from './Profile';
-import Club from './Club';
-import Friends from './Friends';
-import Bell from './Bell';
-import Messages from './Messages';
+import { Profile } from './MatchButtonScreen';
+import { Club } from './ClubButtonScreen';
+import { Friends } from './FriendsButtonScreen';
+import { Bell } from './NotificationsButtonScreen';
+import { Messages } from './MessagesButtonScreen';
 
-class Footer extends Component {
+export class Footer extends React.Component {
     render() {
         return (
             <View style={styles.footerContainer}>
-                <View>
-                    <Profile />
-                </View>
-                <View>
-                    <Club />
-                </View>
-                <View>
-                    <Friends />
-                </View>
-                <View>
-                    <Bell />
-                </View>
-                <View>
-                    <Messages />
-                </View>
+                <Profile navigation={this.props.navigation} />
+                <Club navigation={this.props.navigation} />
+                <Friends navigation={this.props.navigation} />
+                <Bell navigation={this.props.navigation} />
+                <Messages navigation={this.props.navigation} />
             </View>
         );
     };
@@ -42,5 +32,3 @@ const styles = StyleSheet.create({
         borderTopColor: '#fff'
     }
 });
-
-export default Footer;

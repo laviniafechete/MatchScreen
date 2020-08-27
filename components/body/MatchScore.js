@@ -1,48 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 
 
 import { FontAwesome } from '@expo/vector-icons';
 
-class MatchScore extends Component {
-
-    // state = {
-    //     colorRed: this.scoreBarCalculatorRed(),
-    //     colorBlue: this.scoreBarCalculatorBlue()
-    // }
-
-    // scoreBarCalculatorRed = () => {
-    //     const totalScore = this.props.score.score1 + this.props.score.score2;
-    //     const middle = totalScore / 2;
-    //     let redWidth, blueWidth;
-    //     if (this.props.score.score1 < middle) {
-    //         const blueWidthRatio = middle / this.props.score.score1;
-    //         blueWidth = Math.round(2 * blueWidthRatio);
-    //         redWidth = 100 - blueWidth;
-    //         console.log(redWidth);
-
-    //     } else {
-    //         const blueWidthRatio = this.props.score.score1 / middle;
-    //         blueWidth = Math.round(2 * blueWidthRatio);
-    //         redWidth = 100 - blueWidth;
-    //     }
-    //     return redWidth;
-    // }
-
-    // scoreBarCalculatorBlue = () => {
-    //     const totalScore = this.props.score.score1 + this.props.score.score2;
-    //     const middle = totalScore / 2;
-    //     let redWidth, blueWidth;
-    //     if (this.props.score.score1 < middle) {
-    //         const blueWidthRatio = middle / this.props.score.score1;
-    //         blueWidth = Math.round(2 * blueWidthRatio);
-
-    //     } else {
-    //         const blueWidthRatio = this.props.score.score1 / middle;
-    //         blueWidth = Math.round(2 * blueWidthRatio);
-    //     }
-    //     return blueWidth;
-    // }
+export class MatchScore extends React.Component {
 
     state = {
         colorRed: '50%',
@@ -107,7 +69,6 @@ const styles = StyleSheet.create({
         marginBottom: -20
     },
     button: {
-        //resizeMode: 'cover',
         alignItems: 'center',
         justifyContent: 'center',
         height: 30,
@@ -141,5 +102,3 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
-
-export default MatchScore;

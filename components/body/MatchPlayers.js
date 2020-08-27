@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import reactotron from 'reactotron-react-native';
 
-
-
-class MatchPlayers extends Component {
+export class MatchPlayers extends React.Component {
     render() {
+        reactotron.log(this.props.name, 'matchPlayers')
         return (
             <View style={styles.matchPlayersContainer}>
                 <View style={styles.players}>
@@ -12,10 +12,9 @@ class MatchPlayers extends Component {
                     <Image source={require('../../assets/player1.png')} style={styles.smallerImg} />
                     <Text style={styles.playerName}>{this.props.name}</Text>
                 </View>
-
             </View>
         );
-    };
+    }
 };
 
 const styles = StyleSheet.create({
@@ -24,7 +23,6 @@ const styles = StyleSheet.create({
     players: {
         width: 100,
         alignItems: 'center',
-        //textAlign: 'center',
         justifyContent: 'center',
         position: 'relative',
         padding: 10,
@@ -46,5 +44,3 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
 });
-
-export default MatchPlayers;

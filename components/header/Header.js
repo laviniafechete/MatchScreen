@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 
-import Skill from './Skill'
-import Gold from './Gold'
-import Energy from './Energy'
-import Gloves from './Gloves';
+import { Skill } from './Skill'
+import { Gold } from './Gold'
+import { Energy } from './Energy'
+import { Gloves } from './Gloves';
 
 
-class Header extends Component {
-    render() {
-        return (
-            <View style={styles.headerContainer}>
-                <Skill />
-                <Gold />
-                <Energy />
-                <Gloves />
-            </View>
-        );
-    };
+export const Header = () => {
+    return (
+        <View style={styles.headerContainer}>
+            <Skill />
+            <Gold />
+            <Energy />
+            <Gloves />
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -29,5 +27,3 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 });
-
-export default Header;

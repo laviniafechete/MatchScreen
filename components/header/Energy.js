@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Dimensions, StyleSheet, Text } from 'react-native';
 
 import { FontAwesome } from '@expo/vector-icons';
 
-
-class Energy extends Component {
-    render() {
-        return (
-            <View style={styles.energyContainer}>
-                <FontAwesome name="flash" size={24} color="#2dc129" />
-                <Text style={styles.energyCounter}>50/50</Text>
-            </View>
-        );
-    };
+export const Energy = () => {
+    return (
+        <View style={styles.energyContainer}>
+            <FontAwesome name="flash" size={24} color="#2dc129" />
+            <Text style={styles.energyCounter}>50/50</Text>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -35,5 +32,3 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     }
 });
-
-export default Energy;

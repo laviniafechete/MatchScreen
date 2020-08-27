@@ -1,41 +1,16 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, SafeAreaView, StatusBar, ImageBackground } from 'react-native';
+import React from 'react';
 
+import { NavigationMenu } from '../matchScreen/navigation/NavigationMenu';
 
-
-import Header from './components/header/Header';
-import { Body } from './components/body/Body';
-import Footer from './components/footer/Footer';
 
 if (__DEV__) {
   import("./ReactotronConfig")
 }
 
-export default class App extends Component {
-
+export default class App extends React.Component {
   render() {
     return (
-      <SafeAreaView style={styles.screen}>
-        <StatusBar hidden />
-        <View>
-          <Header />
-        </View>
-        <ImageBackground style={styles.body} source={require('./assets/bg.png')}>
-          <Body />
-        </ImageBackground>
-        <View>
-          <Footer />
-        </View>
-      </SafeAreaView>
-    );
+      <NavigationMenu />
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  body: {
-    flex: 1
-  }
-});

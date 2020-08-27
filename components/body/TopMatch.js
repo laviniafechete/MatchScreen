@@ -1,39 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 
 
-class TopMatch extends Component {
+export const TopMatch = () => {
     sendData = () => {
         let message = 'Hello, parent!'
         this.props.parentCallback(message);
-    }
-
-    render() {
-        return (
-            <View style={styles.topMatchContainer}>
-                <ImageBackground source={require('../../assets/topMatchBg.png')} style={styles.backround}>
-                    <View style={styles.matchContainer}>
-                        <Image source={require('../../assets/leftArrow.png')} style={styles.arrowLeft} />
-                        <View style={styles.clubContainer}>
-                            <Image source={require('../../assets/club1.png')} style={styles.clubImage} />
-                            <Text style={styles.clubName}>DINAMO</Text>
-                        </View>
-                        <View style={styles.timerContainer}>
-                            <Image source={require('../../assets/clock.png')} style={styles.clock} />
-                            <Text style={styles.time}>17:30</Text>
-                        </View>
-                        <View style={styles.clubContainer}>
-                            <Image source={require('../../assets/club2.png')} style={styles.clubImage} />
-                            <Text style={styles.clubName}>STEAUA FORCE</Text>
-                        </View>
-                    </View>
-                    {/* <View style={{ flex: 1, alignItems: 'center' }} >
-                        <Button style={{ width: 200 }} title='Send msg to parent' onPress={this.sendData} />
-                    </View> */}
-                </ImageBackground>
-            </View>
-        );
     };
+    return (
+        <View style={styles.topMatchContainer}>
+            <ImageBackground source={require('../../assets/topMatchBg.png')} style={styles.backround}>
+                <View style={styles.matchContainer}>
+                    <Image source={require('../../assets/leftArrow.png')} style={styles.arrowLeft} />
+                    <View style={styles.clubContainer}>
+                        <Image source={require('../../assets/club1.png')} style={styles.clubImage} />
+                        <Text style={styles.clubName}>DINAMO</Text>
+                    </View>
+                    <View style={styles.timerContainer}>
+                        <Image source={require('../../assets/clock.png')} style={styles.clock} />
+                        <Text style={styles.time}>17:30</Text>
+                    </View>
+                    <View style={styles.clubContainer}>
+                        <Image source={require('../../assets/club2.png')} style={styles.clubImage} />
+                        <Text style={styles.clubName}>STEAUA FORCE</Text>
+                    </View>
+                </View>
+            </ImageBackground>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -42,7 +36,6 @@ const styles = StyleSheet.create({
     },
     backround: {
         flex: 1,
-        //resizeMode: "cover",
         justifyContent: "center",
         alignItems: 'center',
         padding: 7,
@@ -90,5 +83,3 @@ const styles = StyleSheet.create({
         color: 'white'
     }
 });
-
-export default TopMatch;

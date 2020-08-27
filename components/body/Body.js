@@ -1,60 +1,30 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, ActivityIndicator, FlatList, ScrollView, } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
 
-import Reactotron from "reactotron-react-native"
-
-import TopMatch from './TopMatch';
-import Players from './Players';
-import Match from './Match';
+import { TopMatch } from './TopMatch';
+import { Players } from './Players';
+import { Match } from './Match';
 
 import matchJSON from './matchJSON'
+import reactotron from 'reactotron-react-native';
 
-// const MatchItem = () => matchJSON.map((item, index) => {
-
-//     state = {
-//         activeIndexMatch: 0
-//     }
-
-//     const isActive = () => {
-//         index === this.state.activeIndexMatch
-//     }
-
-//     return (
-//         <Match
-//             name={item.name}
-//             score={item.score}
-//             index={index}
-//             //isActive={isActive}
-//             onChange=
-//         />
-//     );
-// })
-
-export class Body extends Component {
+export class Body extends React.Component {
     state = {
         isLoading: true,
         message: '',
-        activeIndexMatch: 0,
-        //newBg: false,
+        activeIndexMatch: 0
     };
-
-
-
-    // callbackFunction = (childData) => {
-    //     console.log('aici');
-    //     this.setState({ message: childData });
-    // }
 
     componentDidMount() {
         this.loaderTime = setTimeout(
             () => this.loader(),
             3000
         );
-    }
+    };
 
     componentWillUnmount() {
         clearInterval(this.loaderTime)
-    }
+    };
 
     loader = () => {
         this.setState({
@@ -66,12 +36,11 @@ export class Body extends Component {
         this.setState({
             activeIndexMatch,
         })
-    }
+    };
 
     renderItem = ({ item, index }) => {
-        //Reactotron.log(this.state.activeIndexMatch)
         const isActive = index === this.state.activeIndexMatch
-        //Reactotron.log(isActive, index);
+        reactotron.log(item.name, 'item.name')
         return (
             <Match
                 onChange={this.onChange}
@@ -81,12 +50,11 @@ export class Body extends Component {
                 isActive={isActive}
             />
         )
-    }
+    };
 
     keyExtractor = (item, index) => {
-        //Reactotron.log(index);
         return this.state.activeIndexMatch + index.toString()
-    }
+    };
 
     render() {
 
@@ -106,13 +74,8 @@ export class Body extends Component {
                     data={matchJSON}
                     renderItem={this.renderItem}
                 />
-                {/* <ScrollView>
-                    <MatchItem
-                    //onChange={this.onChange()}
-                    />
-                </ScrollView> */}
             </View>
-        );
+        )
     }
 };
 
@@ -124,6 +87,6 @@ const styles = StyleSheet.create({
     },
     bodyContainer: {
         flex: 1,
-    },
+    }
 });
 
