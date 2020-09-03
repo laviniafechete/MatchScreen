@@ -4,11 +4,11 @@ import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { Header2 } from '../components/header/Header2';
 import { Body2 } from '../components/body/Body2';
 import { Footer } from '../components/footer/Footer';
-import Reactotron from "reactotron-react-native";
+//import Reactotron from "reactotron-react-native";
 
 export class FriendsScreen extends React.PureComponent {
     render() {
-        Reactotron.log('match.js')
+        //Reactotron.log('match.js')
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar hidden />

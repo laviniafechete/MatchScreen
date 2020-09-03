@@ -4,13 +4,13 @@ import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { MatchPlayers } from './MatchPlayers';
 import { MatchScore } from './MatchScore';
 import { logUnequalProps } from '../helpers';
-import reactotron from 'reactotron-react-native';
+//import reactotron from 'reactotron-react-native';
 
 export class Match extends React.PureComponent {
 
-    componentDidUpdate(prevProps) {
-        logUnequalProps(prevProps, this.props)
-    };
+    // componentDidUpdate(prevProps) {
+    //     logUnequalProps(prevProps, this.props)
+    // };
 
     bgChange = () => {
         if (this.props.index % 2 === 0) return true
@@ -27,7 +27,7 @@ export class Match extends React.PureComponent {
     };
 
     render() {
-        reactotron.log(this.props.name, 'name')
+        //reactotron.log(this.props.name, 'name')
         return (
             <TouchableWithoutFeedback onPress={() => this.props.onChange(this.props.index)}>
                 <View style={[this.bgChange() ? styles.bgChange : styles.matchContainer, this.bgMatch()]}>

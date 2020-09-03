@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-
-export const Profile = ({ navigation }) => {
+export const Match = ({ navigation }) => {
     return (
-        <TouchableOpacity style={styles.profileContainer}
+        <TouchableOpacity style={styles.clubContainer}
             onPress={() => { navigation.navigate('Match') }}
         >
-            <FontAwesome5 name="user" size={24} color="white" />
+            <FontAwesome5 name="shield-alt" size={24} color="red" />
         </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
-    profileContainer: {
+    clubContainer: {
         width: Dimensions.get('window').width / 5,
-        alignItems: 'center',
+        alignItems: 'center'
     }
 });

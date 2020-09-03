@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { Profile } from './MatchButtonScreen';
-import { Club } from './ClubButtonScreen';
+import { Profile } from './ProfileButtonScreen';
+import { Match } from './MatchButtonScreen'
 import { Friends } from './FriendsButtonScreen';
 import { Bell } from './NotificationsButtonScreen';
 import { Messages } from './MessagesButtonScreen';
@@ -12,7 +12,7 @@ export class Footer extends React.Component {
         return (
             <View style={styles.footerContainer}>
                 <Profile navigation={this.props.navigation} />
-                <Club navigation={this.props.navigation} />
+                <Match navigation={this.props.navigation} />
                 <Friends navigation={this.props.navigation} />
                 <Bell navigation={this.props.navigation} />
                 <Messages navigation={this.props.navigation} />

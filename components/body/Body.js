@@ -6,7 +6,7 @@ import { Players } from './Players';
 import { Match } from './Match';
 
 import matchJSON from './matchJSON'
-import reactotron from 'reactotron-react-native';
+//import reactotron from 'reactotron-react-native';
 
 export class Body extends React.Component {
     state = {
@@ -18,7 +18,7 @@ export class Body extends React.Component {
     componentDidMount() {
         this.loaderTime = setTimeout(
             () => this.loader(),
-            600
+            1500
         );
     };
 
@@ -40,7 +40,6 @@ export class Body extends React.Component {
 
     renderItem = ({ item, index }) => {
         const isActive = index === this.state.activeIndexMatch
-        reactotron.log(item.name, 'item.name')
         return (
             <Match
                 onChange={this.onChange}

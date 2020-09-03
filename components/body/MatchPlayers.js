@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import reactotron from 'reactotron-react-native';
+//import reactotron from 'reactotron-react-native';
 
 export class MatchPlayers extends React.Component {
     render() {
-        reactotron.log(this.props.name, 'matchPlayers')
+        //reactotron.log(this.props.name, 'matchPlayers')
         return (
             <View style={styles.matchPlayersContainer}>
                 <View style={styles.players}>

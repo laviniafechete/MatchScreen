@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     contentContainer: {
-        padding: 15
+        padding: 15,
+        textAlign: 'center'
     },
     title: {
         color: '#fff',
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: -1, height: 1 },
         textShadowRadius: 10,
         fontSize: 16,
+        textAlign: 'center'
     },
     greenContent: {
         color: '#1adc14',
