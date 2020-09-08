@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View, SafeAreaView, StatusBar, ImageBackground, TextInput, Image, Text, TouchableOpacity, TouchableHighlight } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import reactotron from 'reactotron-react-native';
 import { LoginContextConsumer } from '../LoginContext';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleLogin } from '../store/actions/loginActions'
+
+
+
+const LoginButtonRedux = () => {
+    const isUserLogin = useSelector(state => state.login.login);
+    reactotron.log(isUserLogin, 'isUserLogin1')
+    const dispatch = useDispatch();
+    const toggleLoginHandler = useCallback(() => {
+        dispatch(toggleLogin(isUserLogin))
+    }, [dispatch, isUserLogin])
+    return (
+        <TouchableOpacity
+            onPress={toggleLoginHandler}
+            style={styles.button}
+        >
+            <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+    )
+}
 
 export class LoginScreen extends React.Component {
     state = {
@@ -14,12 +36,9 @@ export class LoginScreen extends React.Component {
     }
 
     getMultipleData = async () => {
-        reactotron.log('intra in get multiple data')
         let values
         try {
             values = await AsyncStorage.multiGet(['email', 'password'])
-            reactotron.log(values[0][1], 'emailStored')
-            reactotron.log(values[1][1], 'passwordStored')
             this.setState({
                 emailStored: values[0][1],
                 passwordStored: values[1][1]
@@ -56,38 +75,6 @@ export class LoginScreen extends React.Component {
     }
 
     render() {
-        const LoginContext = () => {
-            reactotron.log(this.state.emailStored, this.state.email)
-            if (this.state.emailStored === this.state.email && this.state.passwordStored === this.state.password) {
-                AsyncStorage.setItem('userIsLoggin', 'true')
-                return (
-                    <LoginContextConsumer>
-                        {context => (
-                            <TouchableOpacity
-                                onPress={context.userIsLoggedInToggle}
-                                style={styles.button}
-                            >
-                                <Text style={styles.buttonText}>Login</Text>
-                            </TouchableOpacity>
-                        )}
-                    </LoginContextConsumer>
-                )
-            } else {
-                return (
-                    <View>
-                        <TouchableOpacity
-                            onPress={() => this.loginButton()}
-                            style={styles.button}
-                        >
-                            <Text style={styles.buttonText}>Login</Text>
-                        </TouchableOpacity>
-                        <Text style={{ color: 'red' }}>{this.state.error}</Text>
-                    </View>
-                )
-            }
-
-        }
-
         return (
             <SafeAreaView style={styles.screen} >
                 <StatusBar hidden />
@@ -119,9 +106,20 @@ export class LoginScreen extends React.Component {
                         </TouchableHighlight>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity>
-                            <LoginContext />
-                        </TouchableOpacity>
+                        {this.state.emailStored === this.state.email && this.state.passwordStored === this.state.password ? (
+                            <LoginButtonRedux />
+                        ) : (
+                                <View>
+                                    <TouchableOpacity
+                                        onPress={() => this.loginButton()}
+                                        style={styles.button}
+                                    >
+                                        <Text style={styles.buttonText}>Login</Text>
+                                    </TouchableOpacity>
+                                    <Text style={{ color: 'red' }}>{this.state.error}</Text>
+                                </View>
+                            )}
+
                         <View style={styles.buttonRegister}>
                             <Text style={{ color: '#fff', fontSize: 16 }}>Don't have an account? </Text>
                             <TouchableOpacity

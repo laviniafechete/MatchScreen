@@ -1,6 +1,6 @@
 import React from 'react';
-import reactotron from 'reactotron-react-native';
 const { Provider, Consumer } = React.createContext();
+import reactotron from 'reactotron-react-native';
 
 class LoginContextProvider extends React.Component {
     state = {
@@ -8,12 +8,9 @@ class LoginContextProvider extends React.Component {
     };
 
     getData = async () => {
-        reactotron.log('intra in getData din LOGIN')
         let value
         try {
-            reactotron.log('intra in TRY')
             value = await AsyncStorage.getItem('userIsLoggin')
-            reactotron.log(value, 'VALUE IN CONTEXT')
             if (value === 'true')
                 this.setState({
                     isLoggedIn: true,
@@ -37,7 +34,6 @@ class LoginContextProvider extends React.Component {
     }
 
     render() {
-        reactotron.log('intra in context')
         return (
             <Provider
                 value={{ isLoggedIn: this.state.isLoggedIn, userIsLoggedInToggle: this.userIsLoggedInToggle }}

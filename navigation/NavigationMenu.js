@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,43 +12,45 @@ import { LoginScreen } from '../screens/LoginScreen';
 import { RegisterScreen } from '../screens/RegisterScreen';
 import { ForgotPasswordScreen } from '../screens/ForgotPasswordScreen';
 
-import { LoginContextConsumer } from '../LoginContext'
+//import { LoginContextConsumer } from '../LoginContext'
 
-const Stack = createStackNavigator();
+import { useSelector } from 'react-redux';
 
-export class NavigationMenu extends Component {
-    render() {
-        return (
-            <LoginContextConsumer>
-                {context => (
-                    < NavigationContainer >
-                        <Stack.Navigator
-                            screenOptions={
-                                {
-                                    headerShown: false
-                                }
-                            }
-                        >
-                            {context.isLoggedIn ? (
-                                <>
-                                    <Stack.Screen name="Login" component={LoginScreen} />
-                                    <Stack.Screen name="Password" component={ForgotPasswordScreen} />
-                                    <Stack.Screen name="Register" component={RegisterScreen} />
-                                </>
-                            ) : (
-                                    <>
-                                        <Stack.Screen name="Match" component={MatchScreen} />
-                                        <Stack.Screen name="Profile" component={ProfileScreen} />
-                                        <Stack.Screen name="Friends" component={FriendsScreen} />
-                                        <Stack.Screen name="Messages" component={MessagesScreen} />
-                                        <Stack.Screen name="Notifications" component={NotificationsScreen} />
-                                    </>
-                                )}
-                        </Stack.Navigator>
-                    </NavigationContainer>
-                )
+
+import reactotron from 'reactotron-react-native';
+
+
+export const NavigationMenu = () => {
+
+    const Stack = createStackNavigator();
+    const isUserLogin = useSelector(state => state.login.login)
+
+    reactotron.log(isUserLogin, 'isUserlogin')
+    return (
+        < NavigationContainer >
+            <Stack.Navigator
+                screenOptions={
+                    {
+                        headerShown: false
+                    }
                 }
-            </LoginContextConsumer >
-        )
-    }
-}
+            >
+                {!isUserLogin ? (
+                    <>
+                        <Stack.Screen name="Login" component={LoginScreen} />
+                        <Stack.Screen name="Password" component={ForgotPasswordScreen} />
+                        <Stack.Screen name="Register" component={RegisterScreen} />
+                    </>
+                ) : (
+                        <>
+                            <Stack.Screen name="Match" component={MatchScreen} />
+                            <Stack.Screen name="Profile" component={ProfileScreen} />
+                            <Stack.Screen name="Friends" component={FriendsScreen} />
+                            <Stack.Screen name="Messages" component={MessagesScreen} />
+                            <Stack.Screen name="Notifications" component={NotificationsScreen} />
+                        </>
+                    )}
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
+};
