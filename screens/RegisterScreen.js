@@ -41,10 +41,7 @@ export class RegisterScreen extends React.Component {
         }
 
         if (this.state.email != '' || this.state.password != '') {
-            this.props.navigation.navigate('Login', {
-                email: this.state.email,
-                password: this.state.password
-            })
+            this.props.navigation.navigate('Login')
         } else {
             this.setState({
                 error: 'Required information*'
@@ -140,7 +137,9 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         alignItems: 'center',
-        marginTop: 40
+        marginTop: 40,
+        position: 'relative',
+        flex: 1
     },
     button: {
         backgroundColor: '#6495ED',
@@ -157,7 +156,9 @@ const styles = StyleSheet.create({
     },
     buttonLogin: {
         flexDirection: 'row',
-        marginTop: 90
+        paddingBottom: 40,
+        bottom: 0,
+        position: 'absolute'
     },
     buttonTextLogin: {
         color: '#6495ED',

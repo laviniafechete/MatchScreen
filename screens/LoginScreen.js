@@ -14,6 +14,7 @@ export class LoginScreen extends React.Component {
     }
 
     getMultipleData = async () => {
+        reactotron.log('intra in get multiple data')
         let values
         try {
             values = await AsyncStorage.multiGet(['email', 'password'])
@@ -49,16 +50,16 @@ export class LoginScreen extends React.Component {
 
     componentDidMount() {
         this.getMultipleData();
-    }
-
-    componentWillUnmount() {
-        this.getMultipleData();
+        this.updateData = this.props.navigation.addListener('focus', () => {
+            this.getMultipleData();
+        });
     }
 
     render() {
         const LoginContext = () => {
             reactotron.log(this.state.emailStored, this.state.email)
             if (this.state.emailStored === this.state.email && this.state.passwordStored === this.state.password) {
+                AsyncStorage.setItem('userIsLoggin', 'true')
                 return (
                     <LoginContextConsumer>
                         {context => (
@@ -93,6 +94,8 @@ export class LoginScreen extends React.Component {
                 <ImageBackground style={styles.body} source={require('../assets/bg.png')}>
                     <View style={styles.logoContainer}>
                         <Image source={require('../assets/logo_FR.png')} style={styles.logo} />
+                        <Text>{this.state.emailStored}</Text>
+                        <Text>{this.state.passwordStored}</Text>
                     </View>
                     <View style={styles.inputContainer}>
                         <TextInput
@@ -166,7 +169,9 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         alignItems: 'center',
-        marginTop: 40
+        marginTop: 40,
+        position: 'relative',
+        flex: 1
     },
     button: {
         backgroundColor: '#6495ED',
@@ -184,7 +189,9 @@ const styles = StyleSheet.create({
     },
     buttonRegister: {
         flexDirection: 'row',
-        marginTop: 150
+        paddingBottom: 40,
+        bottom: 0,
+        position: 'absolute'
     },
     buttonTextRegister: {
         color: '#6495ED',
