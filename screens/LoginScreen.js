@@ -2,16 +2,25 @@ import React, { useCallback } from 'react';
 import { StyleSheet, View, SafeAreaView, StatusBar, ImageBackground, TextInput, Image, Text, TouchableOpacity, TouchableHighlight } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import reactotron from 'reactotron-react-native';
-import { LoginContextConsumer } from '../LoginContext';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleLogin } from '../store/actions/loginActions'
 
-
+// const _storeData = async () => {
+//     try {
+//         await AsyncStorage.setItem(
+//             '@MySuperStore:key',
+//             'true'
+//         );
+//         alert('GOOD')
+//     } catch (error) {
+//         alert('error')
+//     }
+// };
 
 const LoginButtonRedux = () => {
     const isUserLogin = useSelector(state => state.login.login);
-    reactotron.log(isUserLogin, 'isUserLogin1')
+
     const dispatch = useDispatch();
     const toggleLoginHandler = useCallback(() => {
         dispatch(toggleLogin(isUserLogin))

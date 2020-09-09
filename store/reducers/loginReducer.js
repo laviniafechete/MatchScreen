@@ -11,8 +11,8 @@ const initialState = {
 export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_LOGIN:
-            const existingStatusLogin = state.login.login
-            reactotron.log(existingStatusLogin, 'existingStatusLogin')
+            const existingStatusLogin = state.login
+            reactotron.log(existingStatusLogin, 'existingStatusLogin7')
             if (existingStatusLogin === true) {
                 return {
                     ...state, login: false
@@ -24,5 +24,4 @@ export const loginReducer = (state = initialState, action) => {
             }
         default: return state;
     }
-    return state;
 }

@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View, SafeAreaView, StatusBar, ImageBackground, TextInput, Image, Text, TouchableOpacity } from 'react-native';
 import { Footer } from '../components/footer/Footer'
-import { LoginContextConsumer } from '../LoginContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleLogin } from '../store/actions/loginActions'
+import reactotron from 'reactotron-react-native';
+
+const LogoutButtonRedux = () => {
+    const isUserLogin = useSelector(state => state.login.login);
+    reactotron.log(isUserLogin, 'isUserLogin 2')
+    const dispatch = useDispatch();
+    const toggleLoginHandler = useCallback(() => {
+        dispatch(toggleLogin(isUserLogin))
+    }, [dispatch, isUserLogin])
+    return (
+        <TouchableOpacity
+            onPress={toggleLoginHandler}
+            style={styles.button}
+        >
+            <Text style={styles.buttonText}>Log out</Text>
+        </TouchableOpacity>
+    )
+}
 
 export class ProfileScreen extends React.Component {
     render() {
@@ -13,16 +32,7 @@ export class ProfileScreen extends React.Component {
                         <Image source={require('../assets/logo_FR.png')} style={styles.logo} />
                     </View>
                     <View style={styles.buttonContainer}>
-                        <LoginContextConsumer>
-                            {context => (
-                                <TouchableOpacity
-                                    onPress={context.userIsLoggedInToggle}
-                                    style={styles.button}
-                                >
-                                    <Text style={styles.buttonText}>Log out</Text>
-                                </TouchableOpacity>
-                            )}
-                        </LoginContextConsumer>
+                        <LogoutButtonRedux />
                     </View>
                 </ImageBackground>
                 <Footer navigation={this.props.navigation} />
