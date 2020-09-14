@@ -5,7 +5,7 @@ import reactotron from 'reactotron-react-native';
 
 
 const initialState = {
-    login: false
+    login: true
 }
 
 export const loginReducer = (state = initialState, action) => {
