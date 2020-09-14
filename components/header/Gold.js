@@ -2,13 +2,23 @@ import React from 'react';
 import { View, Dimensions, StyleSheet, Text } from 'react-native';
 
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
+import reactotron from 'reactotron-react-native';
 
+
+const GoldValue = () => {
+    const goldValue = useSelector(state => state.gold.gold);
+    return (
+        <Text style={styles.goldCounter}>{goldValue}</Text>
+    )
+}
 
 export const Gold = () => {
+
     return (
         <View style={styles.goldContainer}>
             <FontAwesome5 name="coins" size={24} color="yellow" />
-            <Text style={styles.goldCounter}>16</Text>
+            <GoldValue />
         </View>
     );
 };

@@ -7,7 +7,9 @@ import reactotron from 'reactotron-react-native';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import { loginReducer } from './store/reducers/loginReducer'
+import { loginReducer } from './store/reducers/loginReducer';
+import { goldReducer } from './store/reducers/goldReducer';
+import { colorsReducer } from './store/reducers/colorsReducer'
 
 
 if (__DEV__) {
@@ -15,7 +17,9 @@ if (__DEV__) {
 }
 
 const rootReducer = combineReducers({
-  login: loginReducer
+  login: loginReducer,
+  gold: goldReducer,
+  color: colorsReducer
 })
 
 const store = createStore(rootReducer);
